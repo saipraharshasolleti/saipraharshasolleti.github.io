@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sai Praharsha Solleti — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #0f2d4a;
+    --blue: #1a5276;
+    --accent: #2e86c1;
+    --sky: #aed6f1;
+    --cream: #f8f9fb;
+    --white: #ffffff;
+    --text: #1c2833;
+    --muted: #5d6d7e;
+    --light-border: #dce8f3;
+    --card-bg: #ffffff;
+    --shadow: 0 4px 24px rgba(15,45,74,0.10);
+    --shadow-hover: 0 8px 40px rgba(15,45,74,0.18);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 6vw; height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 1.25rem; color: var(--navy);
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.875rem; font-weight: 500;
+    color: var(--muted); transition: color .2s;
+    letter-spacing: 0.03em; text-transform: uppercase; font-size: 0.78rem;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f2d4a 0%, #1a4a72 45%, #2366a0 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; padding: 100px 6vw 60px;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  /* Floating circles */
+  #hero::after {
+    content: '';
+    position: absolute; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(46,134,193,0.18) 0%, transparent 70%);
+    top: -100px; right: -100px; border-radius: 50%;
+    animation: pulse 6s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{transform:scale(1);opacity:.6} 50%{transform:scale(1.1);opacity:1} }
+
+  .hero-inner { max-width: 900px; text-align: center; position: relative; z-index: 2; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+    color: var(--sky); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 6px 18px; border-radius: 50px;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900; color: #ffffff;
+    line-height: 1.05; letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    animation: fadeUp 0.7s ease 0.1s both;
+  }
+  .hero-name em { color: var(--sky); font-style: normal; }
+  .hero-role {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: rgba(255,255,255,0.75); font-weight: 300;
+    margin-bottom: 36px;
+    animation: fadeUp 0.7s ease 0.2s both;
+  }
+  .hero-contact {
+    display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+    animation: fadeUp 0.7s ease 0.3s both;
+  }
+  .hero-contact a {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    padding: 8px 18px; border-radius: 50px; font-size: 0.85rem;
+    transition: all .25s;
+  }
+  .hero-contact a:hover { background: rgba(255,255,255,0.22); color: #fff; transform: translateY(-2px); }
+  .hero-scroll {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: rgba(255,255,255,0.4); font-size: 0.75rem; letter-spacing: 0.1em;
+    animation: float 2.5s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-8px)} }
+  .scroll-arrow { width: 20px; height: 20px; border-right: 2px solid rgba(255,255,255,0.4); border-bottom: 2px solid rgba(255,255,255,0.4); transform: rotate(45deg); }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── SECTIONS ── */
+  section { padding: 90px 6vw; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700; color: var(--navy); line-height: 1.15;
+    margin-bottom: 48px;
+  }
+  .section-title span { color: var(--accent); }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    align-items: start; max-width: 1100px; margin: 0 auto;
+  }
+  .about-text p { color: var(--muted); font-size: 1.05rem; line-height: 1.8; margin-bottom: 20px; }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .stat-card {
+    background: var(--cream); border: 1px solid var(--light-border);
+    border-radius: 16px; padding: 24px 20px; text-align: center;
+    transition: all .3s;
+  }
+  .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--sky); }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900; color: var(--navy); line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 0.8rem; color: var(--muted); font-weight: 500; letter-spacing: 0.05em; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--cream); }
+  .skills-container { max-width: 1100px; margin: 0 auto; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+  .skill-card {
+    background: var(--white); border: 1px solid var(--light-border);
+    border-radius: 16px; padding: 28px 24px;
+    transition: all .3s; position: relative; overflow: hidden;
+  }
+  .skill-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--sky));
+  }
+  .skill-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+  .skill-icon { font-size: 2rem; margin-bottom: 14px; }
+  .skill-cat { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .skill-title { font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 14px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    background: #eaf4fb; color: var(--blue);
+    font-size: 0.75rem; font-weight: 500;
+    padding: 4px 12px; border-radius: 50px;
+    border: 1px solid #cce0f0;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--white); }
+  .timeline { max-width: 900px; margin: 0 auto; position: relative; }
+  .timeline::before {
+    content: ''; position: absolute; left: 24px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(to bottom, var(--accent), var(--sky));
+  }
+  .tl-item {
+    display: flex; gap: 32px; margin-bottom: 48px;
+    opacity: 0; transform: translateX(-20px);
+    transition: all 0.5s ease;
+  }
+  .tl-item.visible { opacity: 1; transform: translateX(0); }
+  .tl-dot {
+    flex-shrink: 0; width: 50px; height: 50px;
+    background: var(--white); border: 2px solid var(--accent);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; z-index: 1; margin-top: 4px;
+    box-shadow: 0 0 0 4px rgba(46,134,193,0.1);
+  }
+  .tl-content {
+    flex: 1; background: var(--cream); border: 1px solid var(--light-border);
+    border-radius: 16px; padding: 28px 28px;
+    transition: all .3s;
+  }
+  .tl-content:hover { box-shadow: var(--shadow); border-color: var(--sky); }
+  .tl-meta { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .tl-company { font-weight: 700; font-size: 1.1rem; color: var(--navy); }
+  .tl-role { font-size: 0.9rem; color: var(--accent); font-weight: 500; }
+  .tl-date { font-size: 0.8rem; color: var(--muted); background: var(--white); border: 1px solid var(--light-border); padding: 4px 12px; border-radius: 50px; white-space: nowrap; }
+  .tl-bullets { list-style: none; }
+  .tl-bullets li {
+    font-size: 0.9rem; color: var(--muted); padding: 6px 0 6px 20px; position: relative; border-bottom: 1px dashed #e8f0f8;
+  }
+  .tl-bullets li:last-child { border-bottom: none; }
+  .tl-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.75rem; top: 8px; }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--cream); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 28px; max-width: 1100px; margin: 0 auto; }
+  .proj-card {
+    background: var(--white); border: 1px solid var(--light-border);
+    border-radius: 20px; overflow: hidden;
+    transition: all .35s; cursor: pointer;
+  }
+  .proj-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+  .proj-banner {
+    height: 120px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+    position: relative; overflow: hidden;
+  }
+  .proj-banner-1 { background: linear-gradient(135deg, #0f2d4a, #1a5276); }
+  .proj-banner-2 { background: linear-gradient(135deg, #1a3c5e, #2e7d9a); }
+  .proj-body { padding: 26px 24px; }
+  .proj-type { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .proj-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.3; }
+  .proj-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 18px; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .proj-tag { background: #f0f7ff; color: var(--blue); font-size: 0.72rem; font-weight: 600; padding: 4px 12px; border-radius: 50px; border: 1px solid #cce0f0; }
+
+  /* ── CERTIFICATIONS ── */
+  #certifications { background: var(--white); }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto; }
+  .cert-card {
+    background: var(--cream); border: 1px solid var(--light-border);
+    border-radius: 16px; padding: 28px 24px;
+    display: flex; gap: 18px; align-items: flex-start;
+    transition: all .3s;
+  }
+  .cert-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--sky); }
+  .cert-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--navy), var(--accent));
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+  }
+  .cert-body {}
+  .cert-name { font-weight: 600; font-size: 0.95rem; color: var(--navy); margin-bottom: 4px; }
+  .cert-issuer { font-size: 0.82rem; color: var(--muted); }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--cream); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 900px; margin: 0 auto; }
+  .edu-card {
+    background: var(--white); border: 1px solid var(--light-border);
+    border-radius: 20px; padding: 32px 28px;
+    position: relative; overflow: hidden; transition: all .3s;
+  }
+  .edu-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--navy), var(--accent));
+  }
+  .edu-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+  .edu-degree { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; line-height: 1.3; }
+  .edu-uni { font-size: 0.9rem; color: var(--accent); font-weight: 500; margin-bottom: 6px; }
+  .edu-year { font-size: 0.82rem; color: var(--muted); }
+  .edu-emoji { font-size: 2.5rem; margin-bottom: 16px; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: linear-gradient(135deg, #0f2d4a 0%, #1a4a72 100%);
+    text-align: center; padding: 90px 6vw;
+  }
+  #contact .section-label { color: var(--sky); }
+  #contact .section-title { color: var(--white); margin-bottom: 24px; }
+  #contact p { color: rgba(255,255,255,0.65); font-size: 1.05rem; max-width: 560px; margin: 0 auto 44px; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25);
+    color: #fff; text-decoration: none;
+    padding: 14px 28px; border-radius: 50px; font-size: 0.92rem; font-weight: 500;
+    transition: all .25s;
+  }
+  .contact-btn:hover { background: rgba(255,255,255,0.22); transform: translateY(-3px); }
+  .contact-btn.primary { background: var(--accent); border-color: var(--accent); }
+  .contact-btn.primary:hover { background: #1a6fa0; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy); text-align: center; padding: 24px;
+    font-size: 0.8rem; color: rgba(255,255,255,0.4);
+  }
+
+  @media(max-width:768px){
+    .about-grid,.edu-grid{ grid-template-columns:1fr; }
+    .timeline::before{ left:16px; }
+    .tl-dot{ width:36px;height:36px; }
+    .tl-item{ gap:20px; }
+    .projects-grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Sai<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Quality &amp; Aerospace Engineer</div>
+    <h1 class="hero-name">Sai <em>Praharsha</em><br>Solleti</h1>
+    <p class="hero-role">MSc Aerospace Engineering · QC/QA Specialist · Lean Six Sigma Green Belt</p>
+    <div class="hero-contact">
+      <a href="mailto:saipraharshasolleti@gmail.com">✉ saipraharshasolleti@gmail.com</a>
+      <a href="tel:+447308725241">📞 +44 7308725241</a>
+      <a href="https://linkedin.com/in/sai-praharsha-solleti-ab7091174" target="_blank">🔗 LinkedIn</a>
+      <a href="#">📍 Leicester, UK</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-arrow"></div>
+    SCROLL
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">Precision. <span>Quality.</span><br>Engineering.</h2>
+      <p>I'm a Quality Control &amp; Assurance Engineer with a Master's degree in Aerospace Engineering from Teesside University. My career bridges the aerospace and manufacturing industries, combining rigorous analytical thinking with hands-on production experience.</p>
+      <p>Currently at Lear Corporation, I drive Six Sigma process improvements, lean manufacturing initiatives, and quality assurance across automotive seating systems — ensuring every product meets the highest standards of precision and compliance.</p>
+      <p>With experience spanning avionics at Hindustan Aeronautics Limited to robotic assembly at Husqvarna, I bring a multi-industry perspective to every quality challenge.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">5<span>+</span></div>
+        <div class="stat-label">Years of Engineering Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Industry Sectors</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">ISO<span> 9001</span></div>
+        <div class="stat-label">Certified Quality Management</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">6σ</div>
+        <div class="stat-label">Lean Six Sigma Green Belt</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="skills-container">
+    <div style="text-align:center; margin-bottom:48px;">
+      <div class="section-label">What I Bring</div>
+      <h2 class="section-title">Technical <span>Skills</span></h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🔬</div>
+        <div class="skill-cat">Quality Engineering</div>
+        <div class="skill-title">QC/QA Methodologies</div>
+        <div class="skill-tags">
+          <span class="tag">Six Sigma</span><span class="tag">8D Analysis</span><span class="tag">PFMEA</span>
+          <span class="tag">Gage R&R</span><span class="tag">SPC</span><span class="tag">Control Charts</span>
+          <span class="tag">Root Cause Analysis</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🏭</div>
+        <div class="skill-cat">Lean Manufacturing</div>
+        <div class="skill-title">Process Improvement Tools</div>
+        <div class="skill-tags">
+          <span class="tag">5S</span><span class="tag">Value Stream Mapping</span>
+          <span class="tag">One-Piece Flow</span><span class="tag">Kaizen</span>
+          <span class="tag">Waste Reduction</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">💻</div>
+        <div class="skill-cat">Engineering Software</div>
+        <div class="skill-title">CAD & Simulation</div>
+        <div class="skill-tags">
+          <span class="tag">ANSYS Fluent</span><span class="tag">SolidWorks</span>
+          <span class="tag">CATIA</span><span class="tag">AutoCAD</span><span class="tag">ProE</span>
+          <span class="tag">CFD Analysis</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">⚙️</div>
+        <div class="skill-cat">ERP & Systems</div>
+        <div class="skill-title">Production Software</div>
+        <div class="skill-tags">
+          <span class="tag">SAP S/4HANA</span><span class="tag">MES</span><span class="tag">MRP</span>
+          <span class="tag">ERP Integration</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">✈️</div>
+        <div class="skill-cat">Aerospace</div>
+        <div class="skill-title">Aerospace Engineering</div>
+        <div class="skill-tags">
+          <span class="tag">Avionics Integration</span><span class="tag">FEA</span>
+          <span class="tag">Aerodynamics</span><span class="tag">UAV Design</span>
+          <span class="tag">Flight Mechanics</span><span class="tag">Systems Eng.</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📋</div>
+        <div class="skill-cat">Compliance</div>
+        <div class="skill-title">Standards & Regulations</div>
+        <div class="skill-tags">
+          <span class="tag">ISO 9001</span><span class="tag">IATF 16949</span>
+          <span class="tag">Regulatory Compliance</span><span class="tag">Document Control</span>
+          <span class="tag">Quality Auditing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div style="text-align:center; margin-bottom:60px;">
+    <div class="section-label">Career Journey</div>
+    <h2 class="section-title">Professional <span>Experience</span></h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot">🚗</div>
+      <div class="tl-content">
+        <div class="tl-meta">
+          <div>
+            <div class="tl-company">Lear Corporation</div>
+            <div class="tl-role">Quality &amp; Assembly Technician</div>
+          </div>
+          <div class="tl-date">July 2025 – Present</div>
+        </div>
+        <ul class="tl-bullets">
+          <li>Drive Six Sigma process improvements targeting waste reduction and variability elimination in automotive seating manufacturing.</li>
+          <li>Deploy lean tools — value stream mapping, one-piece flow, and 5S — to streamline workflows and reduce cycle times.</li>
+          <li>Lead quality investigations using 8D, PFMEA, Gage R&R, and SPC to resolve non-conformances.</li>
+          <li>Utilise SAP and MES for real-time production monitoring in compliance with ISO 9001 standards.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">🤖</div>
+      <div class="tl-content">
+        <div class="tl-meta">
+          <div>
+            <div class="tl-company">Husqvarna Group</div>
+            <div class="tl-role">Assembly Engineer / Chassis Assembler</div>
+          </div>
+          <div class="tl-date">June 2025 – July 2025</div>
+        </div>
+        <ul class="tl-bullets">
+          <li>Assembled Automower robotic lawnmower units with precise mechanical and electronic sub-assembly integration.</li>
+          <li>Operated SAP S/4HANA for supply chain coordination, production scheduling, and inventory tracking.</li>
+          <li>Ensured assembly accuracy and safety compliance through rigorous quality control checkpoints.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">🔩</div>
+      <div class="tl-content">
+        <div class="tl-meta">
+          <div>
+            <div class="tl-company">WHS Plastics Ltd</div>
+            <div class="tl-role">Technical Mould Team Member</div>
+          </div>
+          <div class="tl-date">May 2025 – June 2025</div>
+        </div>
+        <ul class="tl-bullets">
+          <li>Operated injection moulding machines to manufacture high-precision plastic components to tight dimensional tolerances.</li>
+          <li>Conducted tool changeovers and process parameter adjustments to maintain optimal production throughput.</li>
+          <li>Implemented corrective actions improving floor safety and operational efficiency.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">🚁</div>
+      <div class="tl-content">
+        <div class="tl-meta">
+          <div>
+            <div class="tl-company">Hindustan Aeronautics Limited</div>
+            <div class="tl-role">Project Trainee — Avionics Division</div>
+          </div>
+          <div class="tl-date">Feb 2020 – June 2020</div>
+        </div>
+        <ul class="tl-bullets">
+          <li>Researched transition from legacy ADF to modern VOR-ILS navigation systems for rotary-wing aircraft.</li>
+          <li>Contributed to avionics reliability improvements and regulatory compliance for HAL's helicopter fleet.</li>
+          <li>Gained exposure to avionics architecture, communication protocols, and systems integration in high-reliability aerospace environments.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div style="text-align:center; margin-bottom:56px;">
+    <div class="section-label">Technical Work</div>
+    <h2 class="section-title">Key <span>Projects</span></h2>
+  </div>
+  <div class="projects-grid">
+    <div class="proj-card">
+      <div class="proj-banner proj-banner-1">✈️</div>
+      <div class="proj-body">
+        <div class="proj-type">MSc Research Project</div>
+        <div class="proj-title">Aerodynamic Research on Modified NACA 0012 Aerofoil (Slot &amp; Groove Analysis)</div>
+        <div class="proj-desc">Designed and simulated a modified NACA 0012 aerofoil using SolidWorks and ANSYS Fluent to evaluate how slot and groove configurations affect aerodynamic performance. Analysed airflow control strategies to improve lift-to-drag ratio under varying angle-of-attack conditions, generating quantitative data to support optimised aerospace design recommendations.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">ANSYS Fluent</span>
+          <span class="proj-tag">SolidWorks</span>
+          <span class="proj-tag">CFD</span>
+          <span class="proj-tag">Aerodynamics</span>
+          <span class="proj-tag">FEA</span>
+        </div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-banner proj-banner-2">🚁</div>
+      <div class="proj-body">
+        <div class="proj-type">Industry Research — HAL</div>
+        <div class="proj-title">Aircraft Navigation System Upgrade Analysis (ADF → VOR-ILS)</div>
+        <div class="proj-desc">Conducted comprehensive technical research and documentation for transitioning HAL helicopter navigation from vintage ADF to modern VOR-ILS avionics systems. Collaborated with engineering teams to identify integration challenges, regulatory compliance requirements, and a structured modernisation roadmap — developing expertise in avionics architecture and project planning.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Avionics</span>
+          <span class="proj-tag">VOR-ILS</span>
+          <span class="proj-tag">Systems Integration</span>
+          <span class="proj-tag">Navigation Systems</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" style="background:var(--white);">
+  <div style="text-align:center; margin-bottom:48px;">
+    <div class="section-label">Academic Background</div>
+    <h2 class="section-title">Education</h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-emoji">🎓</div>
+      <div class="edu-degree">Master's in Aerospace Engineering (Advanced Practice)</div>
+      <div class="edu-uni">Teesside University</div>
+      <div class="edu-year">May 2025</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-emoji">✈️</div>
+      <div class="edu-degree">Bachelor's in Aeronautical Engineering</div>
+      <div class="edu-uni">Malla Reddy College of Engineering and Technology</div>
+      <div class="edu-year">June 2021</div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div style="text-align:center; margin-bottom:48px;">
+    <div class="section-label">Professional Development</div>
+    <h2 class="section-title">Certifications</h2>
+  </div>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-icon">⚡</div>
+      <div class="cert-body">
+        <div class="cert-name">Lean Six Sigma — Green Belt</div>
+        <div class="cert-issuer">Alison · Process Improvement & Quality</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">✅</div>
+      <div class="cert-body">
+        <div class="cert-name">ISO 9001: Quality Management Systems</div>
+        <div class="cert-issuer">Alison · International Quality Standard</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🛠</div>
+      <div class="cert-body">
+        <div class="cert-name">AutoCAD, ProE &amp; CNC Programming</div>
+        <div class="cert-issuer">Central Institute of Tool Design (CITD)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2 class="section-title">Let's <span style="color:var(--sky)">Connect</span></h2>
+  <p>Open to Quality Control, Quality Assurance, and Manufacturing Engineering opportunities across the UK. Let's discuss how I can add value to your team.</p>
+  <div class="contact-links">
+    <a href="mailto:saipraharshasolleti@gmail.com" class="contact-btn primary">✉ Email Me</a>
+    <a href="https://linkedin.com/in/sai-praharsha-solleti-ab7091174" class="contact-btn" target="_blank">🔗 LinkedIn</a>
+    <a href="tel:+447308725241" class="contact-btn">📞 +44 7308725241</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Sai Praharsha Solleti · Quality &amp; Aerospace Engineer · Leicester, UK</p>
+</footer>
+
+<script>
+  // Scroll reveal for timeline items
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 120);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.tl-item').forEach(el => observer.observe(el));
+
+  // Smooth active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--accent)' : '';
+    });
+  });
+
+  // Stat counter animation
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const nums = entry.target.querySelectorAll('.stat-num');
+        nums.forEach(el => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(10px)';
+          el.style.transition = 'all 0.4s ease';
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, 100);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  const statsSection = document.querySelector('.stats-grid');
+  if (statsSection) countObserver.observe(statsSection);
+</script>
+</body>
+</html>
